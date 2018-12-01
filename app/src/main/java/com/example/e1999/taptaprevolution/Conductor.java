@@ -3,6 +3,8 @@ package com.example.e1999.taptaprevolution;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.lang.System;
+
+import android.util.Log;
 import android.widget.Button;
 
 public class Conductor extends AppCompatActivity {
@@ -35,10 +37,5 @@ public class Conductor extends AppCompatActivity {
     public int misses = 0;
 
     public int timer = 0;
-
-    /*
-    We probably need a class that contains the video and a function that will launch it, that can
-    be called by the start button.
-     */
 
 }
