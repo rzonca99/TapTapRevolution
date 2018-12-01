@@ -10,15 +10,16 @@
         android:id="@+id/textView"
         android:layout_width="210dp"
         android:layout_height="178dp"
-        android:text=" Game Info:\n shake your phone when you hear a clap in the song!\n\n\n Brought to you by:\n Arin Rzonca and Megan Zhang"
+        android:text="Game Info:\nHit the button in time to the beat!\n\n\n Brought to you by:\n Arin Rzonca and Megan Zhang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747" />
+        app:layout_constraintVertical_bias="0.747"
+        />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/startButt"
         android:layout_width="172dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
