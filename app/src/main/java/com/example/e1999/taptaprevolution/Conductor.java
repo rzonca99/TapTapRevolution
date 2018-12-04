@@ -39,7 +39,7 @@ public class Conductor extends AppCompatActivity {
     }
 
     /**
-     * the songs bpm
+     * the song's bpm
      */
     public int bpm = 125;
     /**
