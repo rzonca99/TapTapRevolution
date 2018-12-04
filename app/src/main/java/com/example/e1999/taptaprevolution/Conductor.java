@@ -17,13 +17,13 @@ public class Conductor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor);
-        TextView pointsView = (TextView) findViewById(R.id.hitCount);
-        pointsView.setText("Score: " + Integer.toString(points));
+        final TextView pointsView = (TextView) findViewById(R.id.hitCount);
         Button beatButt = (Button) findViewById(R.id.beatButt);
         beatButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 points++;
+                pointsView.setText("Score: " + Integer.toString(points));
             }
         });
     }
