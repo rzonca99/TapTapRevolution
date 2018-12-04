@@ -5,14 +5,27 @@ import android.os.Bundle;
 import java.lang.System;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Conductor extends AppCompatActivity {
+
+    private static final String TAG = "Conductor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor);
+        final TextView pointsView = (TextView) findViewById(R.id.hitCount);
+        Button beatButt = (Button) findViewById(R.id.beatButt);
+        beatButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                points++;
+                pointsView.setText("Score: " + Integer.toString(points));
+            }
+        });
     }
 
     /**
