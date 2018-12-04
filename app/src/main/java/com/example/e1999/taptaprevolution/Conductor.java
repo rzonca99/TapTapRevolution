@@ -1,5 +1,6 @@
 package com.example.e1999.taptaprevolution;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.lang.System;
@@ -19,11 +20,20 @@ public class Conductor extends AppCompatActivity {
         setContentView(R.layout.activity_conductor);
         final TextView pointsView = (TextView) findViewById(R.id.hitCount);
         Button beatButt = (Button) findViewById(R.id.beatButt);
+        Button backButt = (Button) findViewById(R.id.backButt);
         beatButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 points++;
                 pointsView.setText("Score: " + Integer.toString(points));
+            }
+        });
+        backButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: Back button clicked");
+                Intent intent = new Intent(Conductor.this, MainMenu.class);
+                startActivity(intent);
             }
         });
     }
