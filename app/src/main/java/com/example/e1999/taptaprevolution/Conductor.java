@@ -56,7 +56,7 @@ public class Conductor extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d(TAG, "onInitializationSuccess: Done initializing YouTube Player");
-                youTubePlayer.loadVideo("8_vNS1AS9aM");
+                youTubePlayer.loadVideo("SqtPY0q1Gz8");
             }
 
             @Override

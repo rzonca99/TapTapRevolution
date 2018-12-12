@@ -7,6 +7,10 @@ import android.util.Log;
 import android.widget.Button;
 import android.view.View;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
 import java.lang.System;
 
 public class MainMenu extends AppCompatActivity {
