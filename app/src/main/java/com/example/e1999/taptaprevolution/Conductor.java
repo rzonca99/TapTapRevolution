@@ -46,11 +46,12 @@ public class Conductor extends YouTubeBaseActivity {
         beatButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (pointAdd) {
-                //  points++;
-                //}
-                points++;
+                if (timerPoint()) {
+                    points++;
+                }
+                //points++;
                 pointsView.setText("Score: " + Integer.toString(points));
+                timerPoint();
             }
         });
         backButt.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +105,6 @@ public class Conductor extends YouTubeBaseActivity {
         }.start();
 
         mTimerRunning = true;
-        if (mTimeLeftInMillis >= 3000 && mTimeLeftInMillis < 6000) {
-            pointAdd = true;
-        }
     }
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
@@ -115,6 +113,19 @@ public class Conductor extends YouTubeBaseActivity {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
+    }
+    public boolean timerPoint() {
+        if (mTimeLeftInMillis < 118500 && mTimeLeftInMillis > 115500) {
+            return true;
+        }
+        if (mTimeLeftInMillis <= 115500 && mTimeLeftInMillis >= 114000) {
+            return false;
+        }
+        if (mTimeLeftInMillis < 114000 && mTimeLeftInMillis > 108500) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int points = 0;
