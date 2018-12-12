@@ -10,13 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
-public class Conductor extends AppCompatActivity {
+
+public class Conductor extends YouTubeBaseActivity {
 
     private static final String TAG = "Conductor";
 
+    YouTubePlayerView mYouTubePlayerView;
+    Button btnPlay;
+    YouTubePlayer.OnInitializedListener mOnInitializedListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: Starting");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor);
         final TextView pointsView = (TextView) findViewById(R.id.hitCount);
@@ -35,6 +45,31 @@ public class Conductor extends AppCompatActivity {
                 Log.d(TAG, "onClick: Back button clicked");
                 Intent intent = new Intent(Conductor.this, MainMenu.class);
                 startActivity(intent);
+            }
+        });
+
+        //YouTube stuff
+        btnPlay = (Button) findViewById(R.id.btnPlay);
+        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.youTubePlay);
+
+        mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                Log.d(TAG, "onInitializationSuccess: Done initializing YouTube Player");
+                youTubePlayer.loadVideo("8_vNS1AS9aM");
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Log.d(TAG, "onInitializationFailure: YouTube Player failed to initialize");
+            }
+        };
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: Initializing YouTube Player");
+                mYouTubePlayerView.initialize(YouTubeConfig.getApiKey(), mOnInitializedListener);
             }
         });
     }
