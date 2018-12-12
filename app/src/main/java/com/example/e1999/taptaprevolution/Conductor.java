@@ -11,17 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
-
-public class Conductor extends YouTubeBaseActivity {
+public class Conductor extends AppCompatActivity {
 
     private static final String TAG = "Conductor";
-
-    YouTubePlayerView mYouTubePlayerView;
-    YouTubePlayer.OnInitializedListener mOnInitializedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,28 +35,6 @@ public class Conductor extends YouTubeBaseActivity {
                 Log.d(TAG, "onClick: Back button clicked");
                 Intent intent = new Intent(Conductor.this, MainMenu.class);
                 startActivity(intent);
-            }
-        });
-        //YouTube player initialization
-        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.songPlayer);
-        mYouTubePlayerView.initialize(YoutubeConfig.getApiKey(), mOnInitializedListener);
-        mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                Log.d(TAG, "onInitializationSuccess: Done initializing video");
-                youTubePlayer.loadVideo("18nDrsoii5M");
-            }
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-                Log.d(TAG, "onInitializationFailure: Failed to initialize video");
-            }
-        };
-        Button tempPlay = (Button) findViewById(R.id.tempPlay);
-        tempPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: Initializing YouTube player");
-                mYouTubePlayerView.initialize(YoutubeConfig.getApiKey(), mOnInitializedListener);
             }
         });
     }
