@@ -80,7 +80,7 @@ public class Conductor extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d(TAG, "onInitializationSuccess: Done initializing YouTube Player");
-                youTubePlayer.loadVideo("SqtPY0q1Gz8");
+                youTubePlayer.loadVideo("7x0QQ0T1KPQ");
             }
 
             @Override
@@ -99,6 +99,7 @@ public class Conductor extends YouTubeBaseActivity {
         });
     }
 
+    //Timer stuff
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 500) {
             @Override

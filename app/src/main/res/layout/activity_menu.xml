@@ -12,7 +12,7 @@
         android:layout_width="247dp"
         android:layout_height="185dp"
         android:gravity="center"
-        android:text="Click start to access the game screen, and play to start the video. Hit the button in time to the beat!\n\nSong: Boombayah - BlackPink\n\nBrought to you by:\nArin Rzonca and Megan Zhang"
+        android:text="Click start to access the game screen, and play to start the video. Hit the left and right buttons in time to the beat!\n\nSong: Boombayah - BlackPink\n\nBrought to you by:\nArin Rzonca and Megan Zhang"
         android:textColor="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
