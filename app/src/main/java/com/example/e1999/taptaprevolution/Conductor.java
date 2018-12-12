@@ -35,7 +35,9 @@ public class Conductor extends YouTubeBaseActivity {
         beatButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                points++;
+                if (beat) {
+                    points++;
+                }
                 pointsView.setText("Score: " + Integer.toString(points));
             }
         });
@@ -74,15 +76,7 @@ public class Conductor extends YouTubeBaseActivity {
         });
     }
 
-
-    /**
-     * Possible plan of attack: create a function that requires players to hit the button within the
-     * given time frame in order to gain points, as planned. THEN implement a Timer object and
-     * have it call the function at given intervals. That should make the app more versatile and
-     * efficient, as we could theoretically include more songs as long as we examine their lengths
-     * and call the function at the right times.
-     */
-
+    public boolean beat = false;
     /**
      * the song's bpm
      */
