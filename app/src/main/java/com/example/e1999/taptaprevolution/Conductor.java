@@ -1,11 +1,9 @@
 package com.example.e1999.taptaprevolution;
 
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.lang.System;
-import java.util.Locale;
 
 import android.util.Log;
 import android.view.View;
@@ -22,14 +20,6 @@ public class Conductor extends YouTubeBaseActivity {
 
     private static final String TAG = "Conductor";
 
-    private static final long START_TIME_IN_MILLIS = 121000;
-    private CountDownTimer mCountDownTimer;
-    private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-    private TextView mTextViewCountDown;
-
-    boolean pointAdd = false;
-
     YouTubePlayerView mYouTubePlayerView;
     Button btnPlay;
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
@@ -39,16 +29,12 @@ public class Conductor extends YouTubeBaseActivity {
         Log.d(TAG, "onCreate: Starting");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor);
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
         final TextView pointsView = (TextView) findViewById(R.id.hitCount);
         Button beatButt = (Button) findViewById(R.id.beatButt);
         Button backButt = (Button) findViewById(R.id.backButt);
         beatButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (pointAdd) {
-                  //  points++;
-                //}
                 points++;
                 pointsView.setText("Score: " + Integer.toString(points));
             }
@@ -84,39 +70,40 @@ public class Conductor extends YouTubeBaseActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Initializing YouTube Player");
                 mYouTubePlayerView.initialize(YouTubeConfig.getApiKey(), mOnInitializedListener);
-                startTimer();
             }
         });
     }
 
-    private void startTimer() {
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 500) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
 
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-            }
-        }.start();
+    /**
+     * Possible plan of attack: create a function that requires players to hit the button within the
+     * given time frame in order to gain points, as planned. THEN implement a Timer object and
+     * have it call the function at given intervals. That should make the app more versatile and
+     * efficient, as we could theoretically include more songs as long as we examine their lengths
+     * and call the function at the right times.
+     */
 
-        mTimerRunning = true;
-        if (mTimeLeftInMillis >= 3000 && mTimeLeftInMillis < 6000) {
-            pointAdd = true;
-        }
-    }
-    private void updateCountDownText() {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }
+    /**
+     * the song's bpm
+     */
+    public int bpm = 125;
+    /**
+     * how many milliseconds the players has to hit the button
+     */
+    public int hitWindow = 25;
+    /**
+     * if the button was hit in time
+     */
+    public boolean hitButt = false;
+    /**
+     * length of song in milliseconds
+     */
+    public int songLength = 121000;
 
     public int points = 0;
+
+    public int misses = 0;
+
+    public int timer = 0;
 
 }
