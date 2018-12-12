@@ -2,9 +2,8 @@ package com.example.e1999.taptaprevolution;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import java.lang.System;
+
 import java.util.Locale;
 
 import android.util.Log;
@@ -41,17 +40,27 @@ public class Conductor extends YouTubeBaseActivity {
         setContentView(R.layout.activity_conductor);
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         final TextView pointsView = (TextView) findViewById(R.id.hitCount);
-        Button beatButt = (Button) findViewById(R.id.beatButt);
+        Button leftButt = (Button) findViewById(R.id.leftButt);
+        Button rightButt = (Button) findViewById(R.id.rightButt);
         Button backButt = (Button) findViewById(R.id.backButt);
-        beatButt.setOnClickListener(new View.OnClickListener() {
+        leftButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (timerPoint()) {
+                if (leftTimerPoint()) {
                     points++;
                 }
-                //points++;
                 pointsView.setText("Score: " + Integer.toString(points));
-                timerPoint();
+                leftTimerPoint();
+            }
+        });
+        rightButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rightTimerPoint()) {
+                    points++;
+                }
+                pointsView.setText("Score: " + Integer.toString(points));
+                rightTimerPoint();
             }
         });
         backButt.setOnClickListener(new View.OnClickListener() {
@@ -114,14 +123,21 @@ public class Conductor extends YouTubeBaseActivity {
 
         mTextViewCountDown.setText(timeLeftFormatted);
     }
-    public boolean timerPoint() {
-        if (mTimeLeftInMillis < 118500 && mTimeLeftInMillis > 115500) {
+    public boolean leftTimerPoint() {
+        if (mTimeLeftInMillis < 117000 && mTimeLeftInMillis > 116000) {
             return true;
         }
-        if (mTimeLeftInMillis <= 115500 && mTimeLeftInMillis >= 114000) {
+        if (mTimeLeftInMillis <= 116000 && mTimeLeftInMillis >= 114500) {
             return false;
         }
-        if (mTimeLeftInMillis < 114000 && mTimeLeftInMillis > 108500) {
+        if (mTimeLeftInMillis < 115000 && mTimeLeftInMillis > 113600) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean rightTimerPoint() {
+        if (mTimeLeftInMillis < 115000 && mTimeLeftInMillis > 113600) {
             return true;
         } else {
             return false;
