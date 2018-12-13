@@ -41,9 +41,11 @@ public class Conductor extends YouTubeBaseActivity {
         setContentView(R.layout.activity_conductor);
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         final TextView pointsView = (TextView) findViewById(R.id.hitCount);
+        Button backButt = (Button) findViewById(R.id.backButt);
         ImageButton leftButt = (ImageButton) findViewById(R.id.leftButt);
         ImageButton rightButt = (ImageButton) findViewById(R.id.rightButt);
-        Button backButt = (Button) findViewById(R.id.backButt);
+        ImageButton upButt = (ImageButton) findViewById(R.id.upButt);
+        ImageButton downButt = (ImageButton) findViewById(R.id.downButt);
         leftButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +66,26 @@ public class Conductor extends YouTubeBaseActivity {
                 rightTimerPoint();
             }
         });
+        upButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (upTimerPoint()) {
+                    points++;
+                }
+                pointsView.setText("Score: " + Integer.toString(points));
+                upTimerPoint();
+            }
+        });
+        downButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (downTimerPoint()) {
+                    points++;
+                }
+                pointsView.setText("Score: " + Integer.toString(points));
+                downTimerPoint();
+            }
+        });
         backButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +103,8 @@ public class Conductor extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d(TAG, "onInitializationSuccess: Done initializing YouTube Player");
-                youTubePlayer.loadVideo("7x0QQ0T1KPQ");
+                youTubePlayer.loadVideo("YAji3WyouL0");
+                startTimer();
             }
 
             @Override
@@ -95,7 +118,6 @@ public class Conductor extends YouTubeBaseActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Initializing YouTube Player");
                 mYouTubePlayerView.initialize(YouTubeConfig.getApiKey(), mOnInitializedListener);
-                startTimer();
             }
         });
     }
@@ -164,8 +186,7 @@ public class Conductor extends YouTubeBaseActivity {
         }
         if (mTimeLeftInMillis < 87100 && mTimeLeftInMillis > 86000) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -226,8 +247,21 @@ public class Conductor extends YouTubeBaseActivity {
         }
         if (mTimeLeftInMillis < 600000 && mTimeLeftInMillis > 590000) {
             return true;
+        } else {
+            return false;
         }
-        else {
+    }
+    public boolean upTimerPoint() {
+        if (mTimeLeftInMillis < 100000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean downTimerPoint() {
+        if (mTimeLeftInMillis < 100000) {
+            return true;
+        } else {
             return false;
         }
     }
