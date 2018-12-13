@@ -46,6 +46,8 @@ public class Conductor extends YouTubeBaseActivity {
         ImageButton rightButt = (ImageButton) findViewById(R.id.rightButt);
         ImageButton upButt = (ImageButton) findViewById(R.id.upButt);
         ImageButton downButt = (ImageButton) findViewById(R.id.downButt);
+
+        //Button stuff
         leftButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
